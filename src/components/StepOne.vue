@@ -73,14 +73,14 @@ export default {
 
     &__get-started {
       color: #484848;
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-left: 10rem;
     }
 
     &__step-one {
       color: #484848;
       text-transform: uppercase;
-      font-size: 0.8rem;
+      font-size: 1rem;
       margin-left: 10rem;
     }
 
@@ -90,21 +90,16 @@ export default {
       margin-left: 10rem;
     }
 
-    // margin-top: 3%;
-
     &__form-container {
       width: 40%;
       height: 80vh;
       margin-top: 2rem;
       margin-right: 8rem;
-      // padding-left: 15%;
-      // background: lightcoral;
     }
 
     &__image-container {
       width: 40%;
       height: 80vh;
-      // background: lightgreen;
     }
 
     &__image {
@@ -124,14 +119,16 @@ export default {
       width: 11rem;
       margin-right: 1rem;
       color: #484848;
+      font-size: 1rem;
     }
 
     &__location-input-field {
-      width: 52.4%;
+      width: 47.7%;
       padding: 0.5rem;
       margin-bottom: 1rem;
       margin-left: 10rem;
       color: #484848;
+      font-size: 1rem;
     }
 
     &__continue-btn {
@@ -139,14 +136,58 @@ export default {
       color: #fff;
       border: none;
       outline: none;
-      padding: 0.5rem 0.5rem  0.6rem 0.5rem;
+      padding: 0.55rem 0.5rem  0.6rem 0.5rem;
       border-radius: 0.2rem;
       width: 15%;
-      font-size: 0.85rem;
+      font-size: 1rem;
       margin-left: 10rem;
       cursor: pointer;
     }
   }
+
+/*
+  ##Device = Desktops
+  ##Screen = 1440px to higher resolution desktops
+*/
+
+@media (max-width: 1440px) {
+  .step-one-container {
+    &__place-guest-container {
+      margin-bottom: 1.5%;
+    }
+
+    &__location-input-field {
+      width: 61%;
+    }
+
+    &__continue-btn {
+      width: 20%;
+    }
+  }
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+  .step-one-container {
+    &__place-guest-container {
+      margin-bottom: 1.8%;
+    }
+
+    &__location-input-field {
+      width: 69%;
+    }
+
+    &__continue-btn {
+      width: 20%;
+    }
+  }
+
+}
 
   /*
   ##Device = Tablets, Ipads (portrait)
@@ -169,8 +210,9 @@ export default {
     }
 
     &__form-container {
-      width: 40%;
+      width: 48%;
       margin-right: 5rem;
+      padding-left: 4rem;
     }
 
     &__image {
@@ -180,7 +222,7 @@ export default {
     }
 
     &__place-guest-container {
-      margin-bottom: 2%;
+      margin-bottom: 3%;
       margin-left: 0rem;
     }
 
@@ -190,7 +232,7 @@ export default {
     }
 
     &__location-input-field {
-      width: 85%;
+      width: 73.8%;
       margin-left: 0rem;
     }
 
@@ -222,8 +264,9 @@ export default {
     }
 
     &__form-container {
-      width: 40%;
-       margin-right: 3rem;
+      width: 44%;
+      margin-right: 3rem;
+      padding-left: 1rem;
     }
 
     &__image {
@@ -235,15 +278,16 @@ export default {
     &__place-guest-container {
       margin-bottom: 2%;
       margin-left: 0rem;
+      margin-top: 2rem;
     }
 
     &__select {
-      width: 8rem;
+      width: 9rem;
       margin-right: 0.8rem;
     }
 
     &__location-input-field {
-      width: 84%;
+      width: 85%;
       margin-left: 0rem;
     }
 
@@ -306,7 +350,7 @@ export default {
     }
 
     &__continue-btn {
-      width: 30%;
+      width: 34%;
       margin-left: 0rem;
     }
   }
