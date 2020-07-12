@@ -1,47 +1,59 @@
 <template>
   <div class="step-one-container">
     <div class="step-one-container__form-container">
-      <p class="step-one-container__get-started">Hi, Placide! Let’s get started
-         listing your space.</p>
+      <p class="step-one-container__get-started">
+        Hi, Placide! Let’s get started
+        listing your space.
+      </p>
       <p class="step-one-container__step-one">Step 1</p>
       <p class="step-one-container__place-kind">What kind of place do you have?</p>
       <div class="step-one-container__place-guest-container">
-        <div >
-          <select name="" id="" v-model="accommodation" class="step-one-container__select
-          step-one-container__place-select" >
-          <option value="entire place">Entire place</option>
-          <option value="private room">Private room</option>
-          <option value="shared room">Shared room</option>
-        </select>
+        <div>
+          <select
+            name
+            id
+            v-model="accommodation"
+            class="step-one-container__select step-one-container__place-select"
+          >
+            <option value="entire place">Entire place</option>
+            <option value="private room">Private room</option>
+            <option value="shared room">Shared room</option>
+          </select>
         </div>
-        <div >
-          <select name="" id="" v-model="guests" class="step-one-container__select">
-          <option value="1">for 1 guest</option>
-          <option value="2">for 2 guests</option>
-          <option value="3">for 3 guests</option>
-          <option value="4">for 4 guests</option>
-          <option value="5">for 5 guests</option>
-          <option value="6">for 6 guests</option>
-          <option value="7">for 7 guests</option>
-          <option value="8">for 8 guests</option>
-          <option value="9">for 9 guests</option>
-          <option value="10">for 10 guests</option>
-          <option value="11">for 11 guests</option>
-          <option value="12">for 12 guests</option>
-          <option value="13">for 13 guests</option>
-          <option value="14">for 14 guests</option>
-          <option value="15">for 15 guests</option>
-          <option value="16">for 16 guests</option>
-        </select>
+        <div>
+          <select name id v-model="guests" class="step-one-container__select">
+            <option value="1">for 1 guest</option>
+            <option value="2">for 2 guests</option>
+            <option value="3">for 3 guests</option>
+            <option value="4">for 4 guests</option>
+            <option value="5">for 5 guests</option>
+            <option value="6">for 6 guests</option>
+            <option value="7">for 7 guests</option>
+            <option value="8">for 8 guests</option>
+            <option value="9">for 9 guests</option>
+            <option value="10">for 10 guests</option>
+            <option value="11">for 11 guests</option>
+            <option value="12">for 12 guests</option>
+            <option value="13">for 13 guests</option>
+            <option value="14">for 14 guests</option>
+            <option value="15">for 15 guests</option>
+            <option value="16">for 16 guests</option>
+          </select>
         </div>
       </div>
-      <input v-model="location" class="step-one-container__location-input-field"
-      type="text" name="" id="" placeholder="Enter a location">
-      <br>
-      <button class="step-one-container__continue-btn" @click="handleContinue" >Continue</button>
+      <input
+        v-model="location"
+        class="step-one-container__location-input-field"
+        type="text"
+        name
+        id
+        placeholder="Enter a location"
+      />
+      <br />
+      <button class="step-one-container__continue-btn" @click="handleContinue">Continue</button>
     </div>
     <div class="step-one-container__image-container">
-      <img  class="step-one-container__image" src="../assets/image-1.png"  alt="" srcset="">
+      <img class="step-one-container__image" src="../assets/image-1.png" alt srcset />
     </div>
   </div>
 </template>
@@ -59,91 +71,97 @@ export default {
 
   methods: {
     handleContinue() {
-      console.log('Form Data: ', this.accommodation, this.guests, this.location);
+      console.log(
+        'Form Data: ',
+        this.accommodation,
+        this.guests,
+        this.location,
+      );
+
+      this.$router.push({ name: 'step-two' });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-  .step-one-container {
-    display: flex;
-    justify-content: center;
-    font-family: 'Open Sans', sans-serif;
+.step-one-container {
+  display: flex;
+  justify-content: center;
 
-    &__get-started {
-      color: #484848;
-      font-size: 2rem;
-      margin-left: 10rem;
-    }
-
-    &__step-one {
-      color: #484848;
-      text-transform: uppercase;
-      font-size: 1rem;
-      margin-left: 10rem;
-    }
-
-    &__place-kind {
-      color: #484848;
-      font-size: 1.4rem;
-      margin-left: 10rem;
-    }
-
-    &__form-container {
-      width: 40%;
-      height: 80vh;
-      margin-top: 2rem;
-      margin-right: 8rem;
-    }
-
-    &__image-container {
-      width: 40%;
-      height: 80vh;
-    }
-
-    &__image {
-      width: 70%;
-      height: 80vh;
-      margin-left: 18%;
-    }
-
-    &__place-guest-container {
-      display: flex;
-      margin-bottom: 1%;
-      margin-left: 10rem;
-    }
-
-    &__select {
-      padding: 0.5rem;
-      width: 11rem;
-      margin-right: 1rem;
-      color: #484848;
-      font-size: 1rem;
-    }
-
-    &__location-input-field {
-      width: 47.7%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      margin-left: 10rem;
-      color: #484848;
-      font-size: 1rem;
-    }
-
-    &__continue-btn {
-      background: rgb(0, 132, 137);
-      color: #fff;
-      border: none;
-      outline: none;
-      padding: 0.55rem 0.5rem  0.6rem 0.5rem;
-      border-radius: 0.2rem;
-      width: 15%;
-      font-size: 1rem;
-      margin-left: 10rem;
-      cursor: pointer;
-    }
+  &__get-started {
+    color: #484848;
+    font-size: 2rem;
+    margin-left: 10rem;
   }
+
+  &__step-one {
+    color: #484848;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-left: 10rem;
+  }
+
+  &__place-kind {
+    color: #484848;
+    font-size: 1.4rem;
+    margin-left: 10rem;
+  }
+
+  &__form-container {
+    width: 40%;
+    height: 80vh;
+    margin-top: 2rem;
+    margin-right: 8rem;
+  }
+
+  &__image-container {
+    width: 40%;
+    height: 80vh;
+  }
+
+  &__image {
+    width: 70%;
+    height: 80vh;
+    margin-left: 18%;
+  }
+
+  &__place-guest-container {
+    display: flex;
+    margin-bottom: 1%;
+    margin-left: 10rem;
+  }
+
+  &__select {
+    padding: 0.5rem;
+    width: 11rem;
+    margin-right: 1rem;
+    color: #484848;
+    font-size: 1rem;
+  }
+
+  &__location-input-field {
+    width: 47.7%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    margin-left: 10rem;
+    color: #484848;
+    font-size: 1rem;
+  }
+
+  &__continue-btn {
+    background: rgb(0, 132, 137);
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 0.55rem 0.5rem 0.6rem 0.5rem;
+    border-radius: 0.2rem;
+    width: 15%;
+    font-size: 1rem;
+    margin-left: 10rem;
+    cursor: pointer;
+  }
+}
 
 /*
   ##Device = Desktops
@@ -172,7 +190,6 @@ export default {
 */
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-
   .step-one-container {
     &__place-guest-container {
       margin-bottom: 1.8%;
@@ -186,17 +203,15 @@ export default {
       width: 20%;
     }
   }
-
 }
 
-  /*
+/*
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
 */
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .step-one-container {
-
     &__get-started {
       margin-left: 0rem;
     }
@@ -250,7 +265,6 @@ export default {
 
 @media (min-width: 481px) and (max-width: 768px) {
   .step-one-container {
-
     &__get-started {
       margin-left: 0rem;
     }
@@ -298,7 +312,7 @@ export default {
   }
 }
 
-  /*
+/*
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
 */
