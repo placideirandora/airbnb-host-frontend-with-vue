@@ -372,6 +372,10 @@ export default {
         this.bedroomBedsButtonName = 'Done';
       }
 
+      if (!this.isBedroomAddBeds) {
+        this.bedroomBedsButtonName = 'Add Beds';
+      }
+
       if (!this.isBedroomAddBeds && this.totalBedroomBedAmount > 0) {
         this.bedroomBedsButtonName = 'Edit Beds';
       }
@@ -382,6 +386,10 @@ export default {
 
       if (this.isCommonSpaceAddBeds) {
         this.commonSpaceButtonName = 'Done';
+      }
+
+      if (!this.isCommonSpaceAddBeds) {
+        this.commonSpaceButtonName = 'Add Beds';
       }
 
       if (!this.isCommonSpaceAddBeds && this.totalCommonSpaceBedAmount > 0) {
