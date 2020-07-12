@@ -655,6 +655,7 @@ export default {
 
   &__bedroom-beds {
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__bedroom-bed {
