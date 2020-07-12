@@ -244,7 +244,8 @@
               </div>
             </div>
             <div class="step-two-container__next-btn-container">
-              <button class="step-two-container__next-btn">Next</button>
+              <button class="step-two-container__next-btn"
+              @click="navigateToStepThree">Next</button>
             </div>
           </div>
         </div>
@@ -417,6 +418,9 @@ export default {
 
     navigateToStepOne() {
       this.$router.push({ name: 'step-one' });
+    },
+    navigateToStepThree() {
+      this.$router.push({ name: 'step-three' });
     },
   },
 };
@@ -622,12 +626,16 @@ export default {
   }
 
   &__select {
-    padding: 1rem;
-    width: 19rem;
+    padding: 1.2rem;
+    width: 55%;
     margin-right: 1rem;
     color: #484848;
     font-size: 1rem;
     margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    border: solid 1px #c4c4c4;
+    background: #fff;
+    padding-left: 0.6rem;
   }
 
   &__divider {
@@ -892,11 +900,11 @@ export default {
     }
 
     &__minus,
-  &__amount {
-    margin-right: 1rem;
-  }
+    &__amount {
+      margin-right: 1rem;
+    }
 
-   &__back-arrow-container {
+    &__back-arrow-container {
       margin-top: 0.6rem;
     }
 
