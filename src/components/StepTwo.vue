@@ -735,6 +735,10 @@ export default {
       font-size: 1.2rem;
       line-height: 1.6;
     }
+
+    &__form-content {
+      margin-top: 5rem;
+    }
   }
 }
 
@@ -774,6 +778,7 @@ export default {
 
     &__form-content {
       padding-right: 0rem;
+      margin-top: 5rem;
     }
 
     &__bottom-nav {
