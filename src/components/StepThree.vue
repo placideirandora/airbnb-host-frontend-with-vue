@@ -78,8 +78,7 @@
             <div>
               <label class="step-three-container__label">ZIP Code</label>
               <div>
-                <input v-model="zipCode"
-                type="text" class="step-three-container__short-text-field" />
+                <input v-model="zipCode" type="text" class="step-three-container__short-text-field" />
               </div>
             </div>
           </div>
@@ -94,7 +93,7 @@
               </div>
             </div>
             <div class="step-three-container__next-btn-container">
-              <button class="step-three-container__next-btn">Next</button>
+              <button class="step-three-container__next-btn" @click="navigateToStepFour">Next</button>
             </div>
           </div>
         </div>
@@ -124,12 +123,14 @@ export default {
     handleSubmit() {
       console.log('StepThree Data: ', this.data);
     },
-
     navigateToStepOne() {
       this.$router.push({ name: 'step-one' });
     },
     navigateToStepTwo() {
       this.$router.push({ name: 'step-two' });
+    },
+    navigateToStepFour() {
+      this.$router.push({ name: 'step-four' });
     },
   },
 };
