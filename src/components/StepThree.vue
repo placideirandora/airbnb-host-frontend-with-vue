@@ -11,6 +11,7 @@
         <div class="step-three-container__header-border-div-one"></div>
         <div class="step-three-container__header-border-div-two"></div>
         <div class="step-three-container__header-border-div-three"></div>
+        <div class="step-three-container__header-border-div-four"></div>
       </div>
     </div>
     <div class="step-three-container__two-column-container">
@@ -93,7 +94,7 @@
               </div>
             </div>
             <div class="step-three-container__next-btn-container">
-              <button class="step-three-container__next-btn" @click="navigateToStepFour">Next</button>
+              <button class="step-three-container__next-btn" @click="handleContinue">Next</button>
             </div>
           </div>
         </div>
@@ -107,7 +108,7 @@
 import countries from '../data/countries';
 
 export default {
-  name: 'StepTwo',
+  name: 'StepThree',
   data() {
     return {
       country: 'Rwanda',
@@ -116,7 +117,7 @@ export default {
       city: '',
       state: '',
       zipCode: '',
-      options: [...countries],
+      options: [...countries]
     };
   },
   methods: {
@@ -129,10 +130,20 @@ export default {
     navigateToStepTwo() {
       this.$router.push({ name: 'step-two' });
     },
-    navigateToStepFour() {
+    handleContinue() {
+      const payload = {
+        country: this.country,
+        streetAddress: this.streetAddress,
+        aptAddress: this.aptAddress,
+        city: this.city,
+        state: this.state,
+        zipCode: this.zipCode
+      };
+
+      this.$store.commit('setLocationInfo', payload);
       this.$router.push({ name: 'step-four' });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -182,7 +193,8 @@ export default {
 
   &__header-border-div-one,
   &__header-border-div-two,
-  &__header-border-div-three {
+  &__header-border-div-three,
+  &__header-border-div-four {
     border-right: solid #c7c7d1 2px;
     flex-basis: 50%;
   }

@@ -11,6 +11,7 @@
         <div class="step-four-container__header-border-div-one"></div>
         <div class="step-four-container__header-border-div-two"></div>
         <div class="step-four-container__header-border-div-three"></div>
+        <div class="step-four-container__header-border-div-four"></div>
       </div>
     </div>
     <div class="step-four-container__two-column-container">
@@ -113,7 +114,7 @@
               </div>
             </div>
             <div class="step-four-container__next-btn-container">
-              <button class="step-four-container__next-btn" @click="handleSubmit">Next</button>
+              <button class="step-four-container__next-btn" @click="handleContinue">Next</button>
             </div>
           </div>
         </div>
@@ -127,28 +128,27 @@
 import nonDetailedOptions from '../data/nonDetailedAmenities';
 
 export default {
-  name: 'StepTwo',
+  name: 'StepFour',
   data() {
     return {
-      country: 'Rwanda',
-      streetAddress: '',
-      aptAddress: '',
-      city: '',
-      state: '',
-      zipCode: '',
       nonDetailedOptions: [...nonDetailedOptions],
       checkedAmenities: []
     };
   },
   methods: {
-    handleSubmit() {
-      console.log('StepFour Data: ', this.checkedAmenities);
-    },
     navigateToStepOne() {
       this.$router.push({ name: 'step-one' });
     },
     navigateToStepThree() {
       this.$router.push({ name: 'step-three' });
+    },
+    handleContinue() {
+      const payload = {
+        amenities: this.checkedAmenities
+      };
+
+      this.$store.commit('setAmenityInfo', payload);
+      this.$router.push({ name: 'last-step' });
     }
   }
 };
@@ -201,7 +201,8 @@ export default {
 
   &__header-border-div-one,
   &__header-border-div-two,
-  &__header-border-div-three {
+  &__header-border-div-three,
+  &__header-border-div-four {
     border-right: solid #c7c7d1 2px;
     flex-basis: 50%;
   }

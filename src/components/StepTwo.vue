@@ -11,6 +11,7 @@
         <div class="step-two-container__header-border-div-one"></div>
         <div class="step-two-container__header-border-div-two"></div>
         <div class="step-two-container__header-border-div-three"></div>
+        <div class="step-two-container__header-border-div-four"></div>
       </div>
     </div>
     <div class="step-two-container__two-column-container">
@@ -30,15 +31,15 @@
               </div>
               <div class="step-two-container__guest-amount">
                 <div class="step-two-container__minus-container">
-                  <p class="step-two-container__minus" @click="decrementGuestAmount">
+                  <p class="step-two-container__minus" @click="decrementGuestsToAccommodate">
                     <i class="fa fa-minus"></i>
                   </p>
                 </div>
                 <div class="step-two-container__amount-container">
-                  <p class="step-two-container__amount">{{ guestAmount }}</p>
+                  <p class="step-two-container__amount">{{ guestsToAccommodate }}</p>
                 </div>
                 <div class="step-two-container__plus-container">
-                  <p class="step-two-container__plus" @click="incrementGuestAmount">
+                  <p class="step-two-container__plus" @click="incrementGuestsToAccommodate">
                     <i class="fa fa-plus"></i>
                   </p>
                 </div>
@@ -46,7 +47,7 @@
             </div>
             <p class="step-two-container__bed-check">How many bedrooms can guests use?</p>
             <div>
-              <select name id v-model="bedroomAmount" class="step-two-container__select">
+              <select name id v-model="bedroomsGuestCanUse" class="step-two-container__select">
                 <option
                   v-for="(option, index) in options"
                   :value="option.value"
@@ -66,7 +67,7 @@
                   </p>
                 </div>
                 <div class="step-two-container__amount-container">
-                  <p class="step-two-container__amount">{{ guestBedUseAmount }}</p>
+                  <p class="step-two-container__amount">{{ bedsGuestCanUse }}</p>
                 </div>
                 <div class="step-two-container__plus-container">
                   <p class="step-two-container__plus" @click="incrementGuestBedAmount">
@@ -81,19 +82,23 @@
               in each room can help people
               understand the sleeping arrangements.
             </p>
-            <hr class="step-two-container__divider" v-show="bedroomAmount !== 0" />
-            <div v-show="bedroomAmount !== 0" v-for="(item, index) in bedroomAmount" :key="index">
+            <hr class="step-two-container__divider" v-show="bedroomsGuestCanUse !== 0" />
+            <div
+              v-show="bedroomsGuestCanUse !== 0"
+              v-for="(item, index) in bedroomsGuestCanUse"
+              :key="index"
+            >
               <div class="step-two-container__bedroom-container">
                 <div class="step-two-container__bedroom-bed-container">
                   <p class="step-two-container__bedroom">Bedroom {{ item }}</p>
-                  <p class="step-two-container__bed-check">{{ totalBedroomBedAmount }} beds</p>
+                  <p class="step-two-container__bed-check">{{ totalBedroomBeds }} beds</p>
                   <div
                     class="step-two-container__bedroom-beds"
-                    v-show="totalBedroomBedAmount > 1 && !isBedroomAddBeds"
+                    v-show="totalBedroomBeds > 1 && !isBedroomAddBeds"
                   >
                     <p
                       class="step-two-container__bedroom-bed"
-                      v-for="(bed, index) in bedroomBedsAmount"
+                      v-for="(bed, index) in bedroomBeds"
                       :key="index"
                       v-show="bed.amount > 0"
                     >{{ bed.amount }} {{ bed.name }},</p>
@@ -110,7 +115,7 @@
               <div>
                 <div
                   class="step-two-container__guest-amount-container"
-                  v-for="(bed, i) in bedroomBeds"
+                  v-for="(bed, i) in bedroomBedsDefaultOptions"
                   :key="i"
                   v-show="isBedroomAddBeds && currentBedroom === index"
                 >
@@ -119,15 +124,15 @@
                   </div>
                   <div class="step-two-container__guest-amount">
                     <div class="step-two-container__minus-container">
-                      <p class="step-two-container__minus" @click="decrementBedroomBedsAmount(i)">
+                      <p class="step-two-container__minus" @click="decrementBedroomBeds(i)">
                         <i class="fa fa-minus"></i>
                       </p>
                     </div>
                     <div class="step-two-container__amount-container">
-                      <p class="step-two-container__amount">{{ bedroomBedsAmount[i].amount }}</p>
+                      <p class="step-two-container__amount">{{ bedroomBeds[i].amount }}</p>
                     </div>
                     <div class="step-two-container__plus-container">
-                      <p class="step-two-container__plus" @click="incrementBedroomBedsAmount(i)">
+                      <p class="step-two-container__plus" @click="incrementBedroomBeds(i)">
                         <i class="fa fa-plus"></i>
                       </p>
                     </div>
@@ -158,14 +163,14 @@
               <div class="step-two-container__bedroom-container">
                 <div class="step-two-container__bedroom-bed-container">
                   <p class="step-two-container__bedroom">Common spaces</p>
-                  <p class="step-two-container__bed-check">{{ totalCommonSpaceBedAmount }} beds</p>
+                  <p class="step-two-container__bed-check">{{ totalCommonSpaceBeds }} beds</p>
                   <div
                     class="step-two-container__bedroom-beds"
-                    v-show="totalCommonSpaceBedAmount > 1 && !isCommonSpaceAddBeds"
+                    v-show="totalCommonSpaceBeds > 1 && !isCommonSpaceAddBeds"
                   >
                     <p
                       class="step-two-container__bedroom-bed"
-                      v-for="(bed, index) in commonSpaceBedsAmount"
+                      v-for="(bed, index) in commonSpaceBeds"
                       :key="index"
                       v-show="bed.amount > 0"
                     >{{ bed.amount }} {{ bed.name }},</p>
@@ -180,7 +185,7 @@
               </div>
               <div>
                 <div
-                  v-for="(bed, index) in commonSpaceBeds"
+                  v-for="(bed, index) in commonSpaceBedsDefaultOptions"
                   :key="index"
                   class="step-two-container__guest-amount-container"
                   v-show="isCommonSpaceAddBeds"
@@ -190,23 +195,15 @@
                   </div>
                   <div class="step-two-container__guest-amount">
                     <div class="step-two-container__minus-container">
-                      <p
-                        class="step-two-container__minus"
-                        @click="decrementCommonSpaceBedAmount(index)"
-                      >
+                      <p class="step-two-container__minus" @click="decrementCommonSpaceBeds(index)">
                         <i class="fa fa-minus"></i>
                       </p>
                     </div>
                     <div class="step-two-container__amount-container">
-                      <p
-                        class="step-two-container__amount"
-                      >{{ commonSpaceBedsAmount[index].amount }}</p>
+                      <p class="step-two-container__amount">{{ commonSpaceBeds[index].amount }}</p>
                     </div>
                     <div class="step-two-container__plus-container">
-                      <p
-                        class="step-two-container__plus"
-                        @click="incrementCommonSpaceBedAmount(index)"
-                      >
+                      <p class="step-two-container__plus" @click="incrementCommonSpaceBeds(index)">
                         <i class="fa fa-plus"></i>
                       </p>
                     </div>
@@ -244,8 +241,7 @@
               </div>
             </div>
             <div class="step-two-container__next-btn-container">
-              <button class="step-two-container__next-btn"
-              @click="navigateToStepThree">Next</button>
+              <button class="step-two-container__next-btn" @click="handleContinue">Next</button>
             </div>
           </div>
         </div>
@@ -266,13 +262,19 @@ export default {
       currentBedroom: null,
       isBedroomAddBeds: false,
       isCommonSpaceAddBeds: false,
-      guestAmount: 1,
-      bedroomAmount: 1,
-      guestBedUseAmount: 1,
-      totalBedroomBedAmount: 0,
-      totalCommonSpaceBedAmount: 0,
+      guestsToAccommodate: 1,
+      bedroomsGuestCanUse: 1,
+      bedsGuestCanUse: 1,
+      totalBedroomBeds: 0,
+      totalCommonSpaceBeds: 0,
       options: [...optionsData],
-      bedroomBeds: ['Double', 'Queen', 'Single', 'Sofa bed', 'Small double'],
+      bedroomBedsDefaultOptions: [
+        'Double',
+        'Queen',
+        'Single',
+        'Sofa bed',
+        'Small double'
+      ],
       bedroomBedsMoreOptions: [
         'King',
         'Couch',
@@ -281,26 +283,26 @@ export default {
         'Crib',
         'Toddler bed',
         'Hammock',
-        'Water bed',
+        'Water bed'
       ],
-      bedroomBedsAmount: [
+      bedroomBeds: [
         {
           name: 'Double',
-          amount: 0,
+          amount: 0
         },
         { name: 'Queen', amount: 0 },
         { name: 'Single', amount: 0 },
         { name: 'Sofa bed', amount: 0 },
-        { name: 'Small double', amount: 0 },
+        { name: 'Small double', amount: 0 }
       ],
-      commonSpaceBeds: ['Sofa bed', 'Couch', 'Floor mattress'],
-      commonSpaceBedsAmount: [
+      commonSpaceBedsDefaultOptions: ['Sofa bed', 'Couch', 'Floor mattress'],
+      commonSpaceBeds: [
         {
           name: 'Sofa bed',
-          amount: 0,
+          amount: 0
         },
         { name: 'Couch', amount: 0 },
-        { name: 'Floor mattress', amount: 0 },
+        { name: 'Floor mattress', amount: 0 }
       ],
       commonSpaceBedsMoreOptions: [
         'Small double',
@@ -312,56 +314,56 @@ export default {
         'Crib',
         'Toddler bed',
         'Hammock',
-        'Water bed',
+        'Water bed'
       ],
       bedroomBedsButtonName: 'Add Beds',
       commonSpaceButtonName: 'Add Beds',
       commonSpaceNewBed: 'Add another bed',
-      bedroomNewBed: 'Add another bed',
+      bedroomNewBed: 'Add another bed'
     };
   },
   methods: {
     // Guests
-    incrementGuestAmount() {
-      this.guestAmount += 1;
+    incrementGuestsToAccommodate() {
+      this.guestsToAccommodate += 1;
     },
-    decrementGuestAmount() {
-      if (this.guestAmount > 1) {
-        this.guestAmount -= 1;
+    decrementGuestsToAccommodate() {
+      if (this.guestsToAccommodate > 1) {
+        this.guestsToAccommodate -= 1;
       }
     },
 
     // Beds that guests can use
     incrementGuestBedAmount() {
-      this.guestBedUseAmount += 1;
+      this.bedsGuestCanUse += 1;
     },
     decrementGuestBedAmount() {
-      if (this.guestBedUseAmount > 1) {
-        this.guestBedUseAmount -= 1;
+      if (this.bedsGuestCanUse > 1) {
+        this.bedsGuestCanUse -= 1;
       }
     },
 
     // Adding beds to bedroom
-    incrementBedroomBedsAmount(bed) {
-      this.bedroomBedsAmount[bed].amount += 1;
-      this.totalBedroomBedAmount += 1;
+    incrementBedroomBeds(bed) {
+      this.bedroomBeds[bed].amount += 1;
+      this.totalBedroomBeds += 1;
     },
-    decrementBedroomBedsAmount(bed) {
-      if (this.bedroomBedsAmount[bed].amount > 0) {
-        this.bedroomBedsAmount[bed].amount -= 1;
-        this.totalBedroomBedAmount -= 1;
+    decrementBedroomBeds(bed) {
+      if (this.bedroomBeds[bed].amount > 0) {
+        this.bedroomBeds[bed].amount -= 1;
+        this.totalBedroomBeds -= 1;
       }
     },
 
     // Add beds to common space
-    incrementCommonSpaceBedAmount(bed) {
-      this.commonSpaceBedsAmount[bed].amount += 1;
-      this.totalCommonSpaceBedAmount += 1;
+    incrementCommonSpaceBeds(bed) {
+      this.commonSpaceBeds[bed].amount += 1;
+      this.totalCommonSpaceBeds += 1;
     },
-    decrementCommonSpaceBedAmount(bed) {
-      if (this.commonSpaceBedsAmount[bed].amount > 0) {
-        this.commonSpaceBedsAmount[bed].amount -= 1;
-        this.totalCommonSpaceBedAmount -= 1;
+    decrementCommonSpaceBeds(bed) {
+      if (this.commonSpaceBeds[bed].amount > 0) {
+        this.commonSpaceBeds[bed].amount -= 1;
+        this.totalCommonSpaceBeds -= 1;
       }
     },
 
@@ -377,7 +379,7 @@ export default {
         this.bedroomBedsButtonName = 'Add Beds';
       }
 
-      if (!this.isBedroomAddBeds && this.totalBedroomBedAmount > 0) {
+      if (!this.isBedroomAddBeds && this.totalBedroomBeds > 0) {
         this.bedroomBedsButtonName = 'Edit Beds';
       }
     },
@@ -393,25 +395,31 @@ export default {
         this.commonSpaceButtonName = 'Add Beds';
       }
 
-      if (!this.isCommonSpaceAddBeds && this.totalCommonSpaceBedAmount > 0) {
+      if (!this.isCommonSpaceAddBeds && this.totalCommonSpaceBeds > 0) {
         this.commonSpaceButtonName = 'Edit Beds';
       }
     },
 
     handleAddMoreBedroomBed() {
-      this.bedroomBeds = [...this.bedroomBeds, this.bedroomNewBed];
-      this.bedroomBedsAmount = [
-        ...this.bedroomBedsAmount,
-        { name: this.bedroomNewBed, amount: 0 },
+      this.bedroomBedsDefaultOptions = [
+        ...this.bedroomBedsDefaultOptions,
+        this.bedroomNewBed
+      ];
+      this.bedroomBeds = [
+        ...this.bedroomBeds,
+        { name: this.bedroomNewBed, amount: 0 }
       ];
       this.bedroomNewBed = 'Add another bed';
     },
 
     handleAddMoreCommonSpaceBed() {
-      this.commonSpaceBeds = [...this.commonSpaceBeds, this.commonSpaceNewBed];
-      this.commonSpaceBedsAmount = [
-        ...this.commonSpaceBedsAmount,
-        { name: this.commonSpaceNewBed, amount: 0 },
+      this.commonSpaceBedsDefaultOptions = [
+        ...this.commonSpaceBedsDefaultOptions,
+        this.commonSpaceNewBed
+      ];
+      this.commonSpaceBeds = [
+        ...this.commonSpaceBeds,
+        { name: this.commonSpaceNewBed, amount: 0 }
       ];
       this.commonSpaceNewBed = 'Add another bed';
     },
@@ -419,10 +427,22 @@ export default {
     navigateToStepOne() {
       this.$router.push({ name: 'step-one' });
     },
-    navigateToStepThree() {
+    handleContinue() {
+      const payload = {
+        guestsToAccommodate: this.guestsToAccommodate,
+        bedroomsGuestCanUse: this.bedroomsGuestCanUse,
+        bedsGuestCanUse: this.bedsGuestCanUse,
+        bedroomBeds: { total: this.totalBedroomBeds, beds: this.bedroomBeds },
+        commonSpaceBeds: {
+          total: this.totalCommonSpaceBeds,
+          beds: this.commonSpaceBeds
+        }
+      };
+
+      this.$store.commit('setPropertyAndGuestInfo', payload);
       this.$router.push({ name: 'step-three' });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -472,7 +492,8 @@ export default {
 
   &__header-border-div-one,
   &__header-border-div-two,
-  &__header-border-div-three {
+  &__header-border-div-three,
+  &__header-border-div-four {
     border-right: solid #c7c7d1 2px;
     flex-basis: 50%;
   }

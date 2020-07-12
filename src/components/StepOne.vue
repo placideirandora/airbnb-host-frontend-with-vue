@@ -12,7 +12,7 @@
           <select
             name
             id
-            v-model="accommodation"
+            v-model="placeName"
             class="step-one-container__select step-one-container__place-select"
           >
             <option value="entire place">Entire place</option>
@@ -21,7 +21,7 @@
           </select>
         </div>
         <div>
-          <select name id v-model="guests" class="step-one-container__select">
+          <select name id v-model="placeForGuests" class="step-one-container__select">
             <option value="1">for 1 guest</option>
             <option value="2">for 2 guests</option>
             <option value="3">for 3 guests</option>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <input
-        v-model="location"
+        v-model="placeLocation"
         class="step-one-container__location-input-field"
         type="text"
         name
@@ -63,24 +63,24 @@ export default {
   name: 'StepOne',
   data() {
     return {
-      accommodation: 'entire place',
-      guests: 4,
-      location: '',
+      placeName: 'entire place',
+      placeForGuests: 4,
+      placeLocation: ''
     };
   },
 
   methods: {
     handleContinue() {
-      console.log(
-        'Form Data: ',
-        this.accommodation,
-        this.guests,
-        this.location,
-      );
+      const payload = {
+        placeName: this.placeName.toLowerCase(),
+        placeForGuests: this.placeForGuests,
+        placeLocation: this.placeLocation.toLowerCase()
+      };
 
+      this.$store.commit('setLandingInfo', payload);
       this.$router.push({ name: 'step-two' });
-    },
-  },
+    }
+  }
 };
 </script>
 
