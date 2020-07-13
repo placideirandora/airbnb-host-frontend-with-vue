@@ -1,6 +1,6 @@
-# airbnb-host-frontend
+# AIRBNB HOST (VUE)
 
-Front-End Implementation for Airbnb Host Setup Process Sample with Vue
+A Front-End Implementation for Airbnb Host Setup Process Sample with Vue
 
 ## Project setup
 
