@@ -80,6 +80,9 @@ export default {
       this.$store.commit('setLandingInfo', payload);
       this.$router.push({ name: 'step-two' });
     }
+  },
+  created() {
+    this.$store.dispatch('getLocationInfo');
   }
 };
 </script>

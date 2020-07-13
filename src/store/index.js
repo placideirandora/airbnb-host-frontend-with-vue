@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
+
+import baseUrl from '../data/baseUrl';
 
 Vue.use(Vuex);
 
@@ -54,10 +57,15 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    publishHostSetupInfo: ({ commit }, payload) => {
-      commit('setLoading', true);
-
-      console.log('Host Setup Info: ', payload);
+    getLocationInfo: () => {
+      axios
+        .get(`${baseUrl}/get-location-info`)
+        .then(response => {
+          console.log('Host Info Retrieved: ', response.data);
+        })
+        .catch(e => {
+          console.log('Failed to Retrieve Host Info: ', e);
+        });
     }
   },
   getters: {
